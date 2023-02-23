@@ -9,10 +9,6 @@ import java.io.InputStream;
 import java.net.*;
 import com.google.gson.*;
 
-/**
-*
-* @author pakallis
-*/
 class Recv
 {
 private String lhs;
@@ -50,11 +46,11 @@ public class Convert extends HttpServlet {
         HttpSession session;
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter out = resp.getWriter();
-        /*Read request parameters*/
+       
         amount = req.getParameter("amount");
         curTo = req.getParameter("to");
         curFrom = req.getParameter("from");
-        /*Open a connection to google and read the result*/
+      
 
         try {
             query = "http://www.google.com/ig/calculator?hl=en&q=" + amount + curFrom + "=?" + curTo;
@@ -72,7 +68,6 @@ public class Convert extends HttpServlet {
             Recv st = gson.fromJson(str, Recv.class);
             String rhs = st.getRhs();
             rhs = rhs.replaceAll("�", "");
-            /*we do the check in order to print the additional word(millions,billions etc)*/
             StringTokenizer strto = new StringTokenizer(rhs);
             String nextToken;
 
@@ -88,13 +83,7 @@ public class Convert extends HttpServlet {
         }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-	* Handles the HTTP <code>GET</code> method.
-	* @param request servlet request
-	* @param response servlet response
-	* @throws ServletException if a servlet-specific error occurs
-	* @throws IOException if an I/O error occurs
-	*/
+  
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
